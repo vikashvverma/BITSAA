@@ -1,3 +1,4 @@
+//Setup App
 var express=require('express');
 var etest=require('./server/routes/etest');
 var serveStatic=require('serve-static');
