@@ -1,0 +1,102 @@
+<section id="personalInformation" >
+<div class="card ">
+    <div class="card-content  white-text purple">
+        <span class=" card-title ">Personal Information</span>
+    </div>
+    <div class="card-action" >
+        <!-- <div class="company">
+            <div class="description " >
+                <div class="heading">
+                    <h1 style="margin:0;line-height:100%;" >{{getUser().first_name }}&nbsp;{{getUser().last_name}} </h1>
+                    <h4 class="md-headline" style="margin:0;">
+                      <i class="fa fa-briefcase purple-text"></i>&nbsp; {{getUser().designation }}at {{getUser().company}} &nbsp;
+                      <i class="fa fa-map-marker purple-text"></i> &nbsp;{{getUser().city}},{{getUser().country}}
+                    </h4>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="work" ng-show="personalViewMode">
+            <p ng-hide="viewOnly">
+                <span class="blue-text" style="float:right;cursor:pointer;" ng-click="toggleViewMode('personalViewMode');"><label class="green-text" style="cursor:pointer;">Edit</label><i class="fa fa-pencil prefix purple-text" style="margin-left:5px;"></i>  </span>
+            </p>
+            <p >
+                <span class="blue-text"><i class="fa fa-birthday-cake prefix purple-text"></i> Date of Birth : </span><label class="green-text">{{getUser().dob | date:'mediumDate'}}</label>
+            </p>
+            <p>
+                <span class="blue-text"><i class="fa fa-phone prefix purple-text"></i> Mobiles : </span><label class="green-text">{{getUser().mobiles}}</label>
+            </p>
+            <p>
+                <span class="blue-text"><i class="fa fa-male  purple-text" ng-hide="getUser().gender=='F'"></i><i class="fa fa-female  pink-text" ng-hide="getUser().gender=='M'"></i>Gender : </span><label class="green-text">{{getUser().gender}}</label>
+            </p>
+            <p>
+                <span class="blue-text"><i class="fa fa-map-marker prefix purple-text"></i> Address : </span><label class="green-text">{{getUser().address}}</label>
+            </p>
+            <p>
+                <span class="blue-text"><i class="mdi-social-location-city prefix purple-text"></i> City : </span><label class="green-text">{{getUser().city}}</label>
+            </p>
+            <p>
+                <span class="blue-text"><i class="fa fa-globe prefix purple-text"></i> Country : </span><label class="green-text">{{getUser().country}}</label>
+            </p>
+        </div>
+        
+        <md-content class="md-padding" ng-hide="personalViewMode">
+        <form name="personalForm" novalidate>
+                <div layout layout-sm="column">
+                  <md-input-container class="input-field" flex>
+                    <i class="mdi-action-account-circle prefix blue-text"></i>
+                    <input ng-model="user.first_name" id="first_name" type="text" class="validate" ng-required="true">
+                    <label for="first_name">First Name</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="mdi-action-account-circle prefix blue-text"></i>
+                    <input ng-model="user.last_name" id="last_name" type="text" class="validate" ng-required="true">
+                    <label for="last_name">Last Name</label>
+                  </md-input-container>
+                </div>
+
+                <div layout layout-sm="column">
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-birthday-cake prefix blue-text"></i>
+                    <input ng-model="user.dob" bit-Calendar calendar-contention=".datepicker" ng-click="clicked();" type="date" id="dob" class=" datepicker" ng-required="true" />
+                    <label for="dob">Date of Birth</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-phone prefix blue-text"></i>
+                    <input ng-model="user.mobiles" type="text" id="mobiles" class="validate" ng-required="true" />
+                    <label for="mobiles">Mobile Nos.</label>
+                  </md-input-container>
+                  <md-radio-group ng-model="user.gender"  style="display:inline-flex;border: 0px dotted transparent; ">
+                    <span style="line-height:500%;">Gender</span>
+                    <md-radio-button value="M" aria-label="Male" class="md-primary"><i class="fa fa-male fa-3x indigo-text"></i></md-radio-button>
+                    <md-radio-button value="F" aria-label="Female"> <i class="fa fa-female fa-3x pink-text"></i> </md-radio-button>
+                  </md-radio-group>
+                </div>
+
+                <md-input-container class="input-field" flex>
+                  <i class="fa fa-map-marker prefix blue-text"></i>
+                  <input ng-model="user.address" id="address" type="text" class="validate" ng-required="true">
+                  <label for="address">Address</label>
+                </md-input-container>
+
+                <div layout layout-sm="column">
+                  <md-input-container class="input-field" flex>
+                    <i class="mdi-social-location-city prefix blue-text"></i>
+                    <input ng-model="user.city" id="city" type="text" class="validate" ng-required="true">
+                    <label for="city">City</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-globe prefix blue-text"></i>
+                    <input ng-model="user.country" id="country" type="text" class="validate" ng-required="true">
+                    <label for="country">Country</label>
+                  </md-input-container>
+                </div>
+                <md-button md-theme="bitsaaTheme" id="updatePersonalInfo"  class="md-raised md-primary waves-effect waves-light left-align " ng-click="updateInfo(personalForm,'personalViewMode');">Save <i class="fa fa-send "></i></md-button>
+                </form>
+              </md-content>
+
+
+    </div>
+</div>
+
+</section>

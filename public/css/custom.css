@@ -1,0 +1,329 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+  content: '' !important;
+}
+label{
+  content: '' !important;
+}
+#thumbnail{
+  display:inline-flex;
+}
+#thumbnail img {
+      display: block;
+      height: 100px;
+      width: 100px;
+      margin: 5px auto;
+      background-clip: border-box;
+      background-size: cover;
+      border-radius: 50%;
+      border: 3px solid #FFF;
+    }
+    #thumbnail i{
+      line-height:110px;
+    }
+.work p span i{
+    margin-right:5px;
+}
+.work p span, .work p label{
+    font-size:16px;
+    line-height: 40px;
+
+}
+.work p{
+    /*border-bottom:1px solid blue;*/
+}
+
+
+@media (min-width: 600px) {
+  .main-profile{
+      position:fixed;
+      min-width:24%;
+  }
+  .main-profile-parent{
+      min-width:250px;
+  }
+}
+.main-profile-parent .collection{
+    margin:-20px;
+}
+.main-profile-parent .collection a{
+    margin-right:0px !important;
+}
+.main-profile .card .card-content{
+    background: url("../images/cover.jpg");
+    background-size:150%;
+}
+a{
+    text-transform: none !important;
+}
+/* Flaired edges, by Tomas Theunissen */
+
+hr.style-seven {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+hr.style-seven:before { /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.profile-avatar{
+
+ height: 160px;
+ width: 160px;
+ /* border: 5px solid rgb(255, 255, 255); */
+ border-top: 5px solid rgb(255, 255, 255);
+ border-right: 5px solid rgb(255, 255, 255);
+ border-bottom: 5px solid rgb(255, 255, 255);
+ border-left: 5px solid rgb(255, 255, 255);
+ margin: 0px 30px;
+ padding: 0px;
+ max-height: none;
+ min-height: 0px;
+ max-width: none;
+ min-width: 0px;
+ position: static;
+ top: auto;
+ bottom: auto;
+ right: auto;
+ left: auto;
+ float: none;
+ display: block;
+ clear: none;
+ z-index: auto;
+ list-style-image: none;
+ list-style-type: disc;
+ list-style-position: outside;
+ border-collapse: separate;
+ border-spacing: 0px 0px;
+ caption-side: top;
+ empty-cells: show;
+ table-layout: auto;
+ overflow: visible;
+ cursor: pointer;
+ visibility: visible;
+ transform: none;
+ transition: all 0s ease 0s;
+ /* outline: rgb(255, 0, 0) dashed 1px; */
+ outline-offset: 0px;
+ box-sizing: content-box;
+ resize: none;
+ text-shadow: none;
+ text-overflow: clip;
+ word-wrap: normal;
+ box-shadow: rgb(156, 163, 168) 0px 0px 3px 0px;
+ border-top-left-radius: 0px;
+ border-top-right-radius: 0px;
+ border-bottom-left-radius: 0px;
+ border-bottom-right-radius: 0px;
+ display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px; }
+
+.img{
+  width: 100px;
+height: 100px;
+border-radius: 100%;
+overflow: hidden;
+border: 5px solid #fff;
+background: #e2e2e2;
+box-shadow: 0 2px 6px rgba(0,0,0,.3);
+float: left;
+margin-top: 24px;
+}
+.image{
+  margin-left:10px;
+}
+.content{
+  margin-left: 118px;
+padding-top: 18px;
+/*margin-top: 24px;*/
+margin-bottom: 24px;
+}
+
+.head{
+  display:inline-block;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.profile{
+    margin-left:20px;
+}
+
+.md-tab-content{
+    /*background-color: antiquewhite;*/
+}
+.input-field{
+  margin-top:0px;
+}
+
+md-input-container label{
+  margin-top: -20px;
+}
+
+md-input-container .md-placeholder {
+  padding-left:50px;
+}
+
+
+
+md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+    #userSignupLogin .md-header {
+      background-color: white;
+  border-bottom: 1px solid #e1e1e1;
+  }
+
+
+  .md-toast.error {
+     background-color: red;
+ }
+
+ .md-toast.success {
+     background-color: green;
+ }
+
+
+  /* loader */
+  #fade {
+      /*display: none;*/
+      position:absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      background-color: #ababab;
+      z-index: 1001;
+      -moz-opacity: 0.8;
+      opacity: .70;
+      filter: alpha(opacity=80);
+  }
+
+  #modal {
+      /*display: none;*/
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      /*width: 64px;
+      height: 64px;
+      padding:30px 15px 0px;
+      border: 3px solid #ababab;
+      box-shadow:1px 1px 10px #ababab;
+      border-radius:20px;
+      background-color: white;*/
+      z-index: 1002;
+      text-align:center;
+      /*overflow: auto;*/
+  }
+
+
+
+  .loader {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  /*border:1px solid black;*/
+  /*   border-radius:150px; */
+}
+.loader li {
+  background-color: black;
+  border-radius: 100px;
+  position: absolute;
+  left: 50%;
+  -webkit-animation: loader 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+.loader li:first-child {
+  width: 10px;
+  height: 10px;
+  -webkit-transform-origin: -5px 30px;
+  background-color: red;
+}
+.loader li:nth-child(2) {
+  width: 8px;
+  height: 8px;
+  -webkit-animation-delay: 0.1s;
+  -webkit-transform-origin: -4px 30px;
+  background-color: green;
+}
+.loader li:nth-child(3) {
+  width: 6px;
+  height: 6px;
+  -webkit-animation-delay: 0.2s;
+  -webkit-transform-origin: -3px 30px;
+  background-color: blue;
+}
+.loader li:nth-child(4) {
+  width: 4px;
+  height: 4px;
+  -webkit-animation-delay: 0.3s;
+  -webkit-transform-origin: -2px 30px;
+  background-color: yellow;
+}
+.loader li:nth-child(5) {
+  width: 3px;
+  height: 3px;
+  -webkit-animation-delay: 0.4s;
+  -webkit-transform-origin: -1px 30px;
+  background-color: black;
+}
+.loader li:nth-child(5) {
+  width: 3px;
+  height: 3px;
+  -webkit-animation-delay: 0.7s;
+  -webkit-transform-origin: -1px 30px;
+  background-color: black;
+}
+.loader p {
+  white-space: nowrap;
+  line-height: 60px;
+  position: absolute;
+}
+
+.absolute-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg) translateX(10px);
+    opacity: 0;
+  }
+}
+/* loader end */

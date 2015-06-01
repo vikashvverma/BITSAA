@@ -1,0 +1,78 @@
+ <span >
+ <md-whiteframe class="md-whiteframe" layout layout-gt-sm="row" layout-sm="column" layout-align="center center" style="margin-top:20px;">
+        <label class="blue-text">Search Alumni</label>
+   </md-whiteframe>
+   <md-whiteframe class="md-whiteframe-z5" style="margin-bottom:20px;" layout layout-gt-sm="row" layout-sm="column" layout-margin layout-fill layout-padding >
+   <md-input-container class="input-field"  flex>
+                    <input ng-model="search.first_name"  id="name" type="text" class="validate" ng-change="vm.loadMore();" >
+                    <label for="name" class="blue-text">Name</label>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <md-select ng-model="search.branch"  md-on-open="loadBranches()" style="min-width: 200px;" ng-change="vm.loadMore();">
+                      <md-select-label class="blue-text">{{ search.branch ? search.branch : 'Search by Branch' }}</md-select-label>
+                      <md-option ng-value="branch=='All'?'':branch"  ng-repeat="branch in branches">{{branch}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="search.$" id="others" type="text" class="validate" ng-change="vm.loadMore();" >
+                    <label for="others" class="blue-text">Any</label>
+                  </md-input-container>
+ </md-whiteframe>
+
+<div  flex infinite-scroll='vm.next()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='0'>
+  <md-grid-list
+        md-cols-sm="1" md-cols-md="2" md-cols-gt-md="4"
+        md-row-height-gt-md="4:3" md-row-height="4:3"
+        md-gutter="8px" md-gutter-gt-sm="4px" class="users" >
+    <md-grid-tile class="animate " ng-repeat="alumni in (currentUsers=(vm.users | filter:search))"
+                  md-rowspan="{{alumni.rowspan}}"
+                  md-colspan="{{alumni.colspan}}"
+                  md-colspan-sm="1"
+                  ng-class="alumni.background" ng-style="{background:alumni.color}" >
+                 <div class="main-profile" style="position:initial;width:100%;height:100%;padding-bottom:36px;">
+          <div class="card " style="  height: 100%;margin:0;">
+            <div class="card-content white-text" style="width:100%;">
+              <!-- <span class="card-title">{{user.first_name}}</span> -->
+              <img ng-src="./images/avatar/{{alumni.avatar_url || 'bit.png'}}" ng-click="vm.viewProfile(alumni.username);" class="md-avatar profile-avatar circle" style="  border-radius: 50%;" alt="{{getUser().first_name}}  {{getUser().last_name }}" />
+
+            </div>
+            <div class="card-action  accent-1" style="">
+                <md-list>
+                    <md-list-item class="red-text accent-1" >
+                         <h2 style="margin:0;line-height:100%;cursor:pointer;" ng-click="vm.viewProfile(alumni.username);"  class="center-align">
+
+                           {{alumni.first_name }}&nbsp;{{alumni.last_name}}
+
+                         </h2>
+
+                    </md-list-item>
+                    <md-list-item class="red-text accent-1">
+                        <h5 class="md-headline center-align" style="margin:0;">{{alumni.designation }} , {{alumni.company}}
+                        </h5>
+                    </md-list-item>
+                    <md-list-item class="red-text accent-1">
+                        <h5 class="md-headline center-align" style="margin:0;">{{alumni.branch }} , {{alumni.entryYear}}
+                        </h5>
+                    </md-list-item>
+                </md-list>
+             </div>
+
+            </div>
+          </div>
+
+<!--       <img alt="avatar" class="img-responsive img" ng-src="./images/avatar/vikash.png" style="top:auto !important;left:auto !important;margin-right:auto !important;margin-bottom:auto !important;">-->
+<!--       <img ng-src="./images/avatar/{{tile.avatar_url}}" class="md-avatar profile-avatar circle" style="  border-radius: 50%;" alt="{{getUser().first_name}}  {{getUser().last_name }}" />-->
+<!--      <md-icon md-svg-icon="{{tile.icon}}" ></md-icon>-->
+      <md-grid-tile-footer><h3>{{alumni.city}}, {{alumni.country}}, <md-button class="waves-effect" ng-click="vm.viewProfile(alumni.username);">View Profile</md-button></h3></md-grid-tile-footer>
+    </md-grid-tile>
+    <md-grid-tile ng-show="busy" class="animate "
+                  md-rowspan="1"
+                  md-colspan="1"
+                  md-colspan-sm="1" >
+                  Loading...
+                </md-grid-tile>
+  </md-grid-list>
+</div>
+</span>

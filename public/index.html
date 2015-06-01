@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="BITSAAB" ng-controller="mainController">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
+  <title>Home</title>
+  <base href="/">
+  <!-- CSS  -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <!-- Angulars Material CSS now available via Google CDN; version 0.8 used here -->
+  <link rel="stylesheet" href="./css/angular-material.min.css" />
+  <link rel="stylesheet" href="./css/custom.css" />
+  <link rel="stylesheet" href="./css/font-awesome.css" />
+  <link rel="stylesheet" href="./css/animate.css"/>
+  <link rel="stylesheet" href="./css/ng-notify.min.css"/>
+  <link rel="stylesheet" href="./css/users.css"/>
+</head>
+
+<body>
+
+  <span ng-controller="profileController">
+    <div class="navbar-fixed">
+      <nav id="nav" class="teal darken-2">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a ui-sref="home" class="brand-logo">
+              <img src="./images/favicon.ico" alt="BITSAA Bangalore">
+            </a>
+            <ul class="right hide-on-med-and-down" style="color:#FFFFFF !important;">
+              <li>
+                <a ui-sref="home" class="waves-effect">BITSAA</a>
+              </li>
+              <li ng-show="getUser() && getUser().username">
+                <a ui-sref="alumni" class="waves-effect">Alumni</a>
+              </li>
+              <li ng-show="getUser() && getUser().username">
+                <a ui-sref="statistics" class="waves-effect" >Statistics</a>
+              </li>
+              <li ng-if="getUser() && getUser().username">
+                <a ui-sref="updates" class="waves-effect" >Updates</a>
+              </li>
+              <li>
+                <a ng-hide="getUser() && getUser().username" ui-sref="login" class="waves-effect"><i class="large mdi-action-account-circle"></i></a>
+                <a ng-click="toggleRight();" style="cursor:pointer;" ng-show="getUser() && getUser().username" class="waves-effect"><i class=" mdi-action-account-circle" ><span style="font-size:1rem;  float: right;">{{getUser().first_name}}</span></i></a>
+                <!-- <a ng-click="toggleRight();"><i class="large mdi-action-account-circle"></i></a> -->
+              </li>
+            </ul>
+            <ul id="nav-mobile" class="right side-nav">
+              <li>
+                <a ui-sref="home" class="waves-effect">BITSAA</a>
+              </li>
+              <li ng-show="getUser() && getUser().username">
+                <a ui-sref="alumni" class="waves-effect">Alumni</a>
+              </li>
+              <li ng-show="getUser() && getUser().username">
+                <a ui-sref="statistics" class="waves-effect" >Statistics</a>
+              </li>
+              <li>
+                <a ng-hide="getUser() && getUser().username" ui-sref="login" class="waves-effect"><i class="large mdi-action-account-circle"></i></a>
+                <a ng-click="toggleRight();" style="cursor:pointer;" ng-show="getUser() && getUser().username" class="waves-effect"><i class=" mdi-action-account-circle" ><span style="font-size:1rem;  float: right;">{{getUser().first_name}}</span></i></a>
+                <!-- <a ng-click="toggleRight();"><i class="large mdi-action-account-circle"></i></a> -->
+              </li>
+            </ul>
+            <a class="button-collapse" href="javascript:void(0);" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" ng-show="getUser().first_name" md-component-id="right" style="z-index: 1000;min-width:25%;">
+      <md-toolbar class="md-theme-light">
+        <div class="profile">
+          <span style="float:left;"><i ng-click="close();" class="fa fa-close"></i></span>
+        </div>
+        <div class="head">
+          <div class="image">
+            <img ng-src="./images/avatar/{{getUser().avatar_url}}" alt="avatar" class="img-responsive img">
+          </div>
+          <div class="content">
+            <p ng-bind="getUser().first_name"></p>
+            <span ng-bind="getUser().designation"></span>
+          </div>
+        </div>
+
+      </md-toolbar>
+      <div class="collection" style="margin-top:0;">
+     <a ui-sref="profile" class="collection-item waves-effect" ng-click="toggleRight();">Profile</a>
+     <a href="#!" class="collection-item waves-effect" ng-click="toggleRight();">Settings</a>
+     <a style="cursor:pointer;" class="collection-item waves-effect" ng-click="logout();">Logout</a>
+   </div>
+    </md-sidenav>
+  </span>
+
+
+  <div style="min-height:80.40%;" ui-view>
+
+  </div>
+  <div id="fade" ng-show="showLoader"></div>
+  <div id="modal" ng-show="showLoader">
+    <!-- <img id="loader" src="images/loading.gif" /> -->
+    <section class="absolute-center">
+      <ul class="loader">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <!-- <p>Loading . . .</p> -->
+      </ul>
+  </section>
+  </div>
+  <footer class="page-footer teal darken-2">
+            <!-- <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">About Us</h5>
+                  <p class="grey-text text-lighten-4">BISAA Bangalore Chapter aims to bring all BIT Sindri alumni living in Bangalore together.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Other Chapters</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://alumnibitsindri.com/" target="_blank">Global</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+            <div class="footer-copyright">
+              <div class="container">
+              © 2015 BITSAA Bangalore Chapter
+              <a class="grey-text text-lighten-4 right" href="#!">Developed By : BITSAA Bangalore Chapter</a>
+              </div>
+            </div>
+          </footer>
+
+
+          <script src="./js/vendors/jquery/jquery-2.1.1.min.js"></script>
+  <!-- Angular Material Dependencies -->
+  <script src="./js/vendors/angular/angular.min.js"></script>
+  <script src="./js/vendors/angular/angular-touch.js"></script>
+  <script src="./js/vendors/angular/ng-infinite-scroll.min.js"></script>
+  <script src="./js/vendors/material/angular-animate.min.js"></script>
+  <script src="./js/vendors/material/angular-aria.min.js"></script>
+
+
+  <!-- Angular Material Javascript now available via Google CDN; version 0.8 used here -->
+  <script src="./js/vendors/material/angular-material.min.js"></script>
+
+  <script src="./js/vendors/angular/ng-notify.min.js"></script>
+  <script src="./js/vendors/angular/angular-ui-router.min.js"></script>
+  <script src="./js/vendors/angular/angular-local-storage.min.js"></script>
+  <!--  Scripts-->
+  <script src="./js/vendors/jquery/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="./js/vendors/duScroll/angular-scroll.min.js"></script>
+  <script src="app.js"></script>
+  <script src="./App/controllers/mainController.js"></script>
+  <script src="./App/controllers/profileController.js"></script>
+  <script src="./App/controllers/userController.js"></script>
+  <script src="./App/controllers/alumniController.js"></script>
+  <script src="./App/controllers/statController.js"></script>
+  <script src="./App/controllers/viewProfileController.js"></script>
+  <script src="./App/controllers/updateController.js"></script>
+  <script src="./App/directives/dateDirective.js"></script>
+  <script src="./App/directives/fileUpload.js"></script>
+  <script src="./App/services/userService.js"></script>
+  <script src="./App/services/chartService.js"></script>
+
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/highcharts-3d.js"></script>
+</body>
+
+</html>

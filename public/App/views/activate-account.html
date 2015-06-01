@@ -1,0 +1,25 @@
+<md-dialog aria-label="Activate Account">
+  <md-dialog-content class="sticky-container">
+    <md-subheader class="md-sticky-no-effect center-text blue-text ">Activate Account</md-subheader>
+    <div>
+<md-content class="md-padding" >
+  <div layout layout-sm="column">
+  <md-input-container class="input-field" flex>
+    <i class="fa fa-unlock prefix blue-text"></i>
+    <input ng-model="activationCode" id="activationCode" type="text" class="validate" ng-required="true" >
+    <label for="activationCode">Enter Activation Code</label>
+  </md-input-container>
+</div>
+</md-content>
+</div>
+ </md-dialog-content>
+ <div class="md-actions" layout="row">
+   <span flex></span>
+   <md-button ng-click="cancel();" class="md-primary">
+    Activate Later
+   </md-button>
+   <md-button ng-click="activateAccount(activationCode);" class="md-primary">
+     Activate Account
+   </md-button>
+ </div>
+</md-dialog>

@@ -1,0 +1,65 @@
+<section id="loginInformation" >
+<div class="card ">
+    <div class="card-content blue white-text ">
+        <span class=" card-title ">Login Information</span>
+    </div>
+    <div class="card-action">
+        <div class="work">
+            <p  style="border-top:0;" ng-show="usernameViewMode">
+                <span class="blue-text"> username : </span><label class="green-text">{{getUser().username}}</label>
+                <span class="blue-text" style="float:right;cursor:pointer;" ng-click="toggleViewMode('usernameViewMode');"><label class="green-text" style="cursor:pointer;">Edit</label><i class="fa fa-pencil prefix purple-text" style="margin-left:5px;"></i>  </span>  
+            </p>
+            <md-input-container class="input-field" ng-hide="usernameViewMode" flex>
+
+                    <input ng-model="user.username" id="username" type="text" class="validate" ng-required="true">
+                    <i class="fa fa-spinner fa-pulse md-warn" ng-show="user.username && usernameExists===undefined"></i>
+                    <i class="fa fa-check green-text" ng-show="user.username && usernameExists===false">Available</i>
+                    <i class="fa fa-times red-text" ng-show="user.username && usernameExists===true  && !(username==user.username)">Not Available</i>
+                    <label for="username">username</label>
+            </md-input-container>
+            <md-button md-theme="bitsaaTheme" id="updateUsername" style="margin-bottom:10px;" ng-hide="usernameViewMode"  class="md-raised md-primary waves-effect waves-light left-align " ng-click="updateKey('username');">Save <i class="fa fa-send "></i></md-button>
+            <p ng-show="primaryEmailViewMode">
+                <span class="blue-text">Primary Email  : </span><label class="green-text">{{getUser().primaryEmail}}</label>
+                <span class="blue-text" style="float:right;cursor:pointer;" ng-click="toggleViewMode('primaryEmailViewMode');"><label class="green-text" style="cursor:pointer;">Edit</label><i class="fa fa-pencil prefix purple-text" style="margin-left:5px;"></i>  </span>
+            </p>
+            <md-input-container class="input-field" ng-hide="primaryEmailViewMode" flex>
+                    <input ng-model="user.primaryEmail" id="primaryEmail" type="email" class="validate" ng-required="true">
+                    <i class="fa fa-spinner fa-pulse md-warn" ng-show="user.primaryEmail && emailExists===undefined"></i>
+                    <i class="fa fa-times red-text" ng-show="user.primaryEmail && emailExists===true && !(primaryEmail==user.primaryEmail)">Email already registered!</i>
+                    <label for="primaryEmail">Email ID</label>
+            </md-input-container>
+            <md-button md-theme="bitsaaTheme" id="updatePrimaryEmail" style="margin-bottom:10px;" ng-hide="primaryEmailViewMode"  class="md-raised md-primary waves-effect waves-light left-align " ng-click="updateKey('primaryEmail');">Save <i class="fa fa-send "></i></md-button>
+            
+            <p ng-show="passwordViewMode">
+                <span class="blue-text">Password  : </span><label class="green-text">******</label>
+                <span class="blue-text" style="float:right;cursor:pointer;" ng-click="toggleViewMode('passwordViewMode');"><label class="green-text" style="cursor:pointer;">Edit</label><i class="fa fa-pencil prefix purple-text" style="margin-left:5px;"></i>  </span>
+            </p>
+            
+            
+                  <form name="passwordForm" ng-hide="passwordViewMode" novalidate>
+                   <md-input-container class="input-field" flex style="overflow-y: hidden;">
+                    <i class="fa fa-eye-slash prefix blue-text"></i>
+                    <input ng-model="password" name="password" type="password" class="validate" ng-minlength="4" ng-required="true">
+                    <label for="password">Password</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex style="overflow-y: hidden;">
+                    <i class="fa fa-eye-slash prefix blue-text"></i>
+                    <input ng-model="new_password" name="new_password" type="password" class="validate" ng-minlength="4" ng-required="true">
+                    <label for="new_password">New Password</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-eye-slash prefix blue-text"></i>
+                    <input ng-model="c_new_password" name="c_new_password" type="password" class="validate" ng-minlength="4" ng-required="true">
+                    <label for="c_new_password">Confirm Password</label>
+                  </md-input-container>
+                  <md-button md-theme="bitsaaTheme" id="changePassword" class="md-raised md-primary waves-effect waves-light left-align " ng-click="changePassword(passwordForm);">Change Password <i class="fa fa-send "></i></md-button>
+            
+                  </form>
+                
+                
+            
+        </div>
+    </div>
+</div>
+
+</section>

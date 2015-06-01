@@ -1,0 +1,23 @@
+<div layout="row" layout-sm="column" layout-padding>
+  <div flex flex-gt-sm="40" flex-sm="100">
+    <div id="piechart" style="height:500px;" ></div>
+  </div>
+  <div flex flex-gt-sm="60" flex-sm="100">
+    <div id="linechart"  style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div layout layout-gt-sm="row" layout-sm="column" layout-margin layout-fill layout-padding>
+      <!-- <md-input-container class="input-field" flex>
+        <md-select ng-model="theme"  md-on-open="vm.loadThemes()" style="min-width: 200px;" ng-change="vm.reDraw(theme);">
+          <md-select-label class="blue-text">{{ theme ? theme : 'Change Theme' }}</md-select-label>
+          <md-option ng-value="theme"  ng-repeat="theme in vm.themes">{{theme}}</md-option>
+        </md-select>
+      </md-input-container> -->
+      <md-input-container class="input-field" flex>
+        <md-select ng-model="type"  md-on-open="vm.loadTypes()" style="min-width: 200px;" ng-change="vm.reDraw(type);">
+          <md-select-label class="blue-text">{{ type ? type : 'Select View' }}</md-select-label>
+          <md-option ng-value="type"  ng-repeat="type in vm.types">{{type}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<span class="container">
+  <div layout="row" layout-sm="column" layout-padding style="  padding-top: 0px;">
+    <div flex-gt-sm="25" class="main-profile-parent" flex>
+        <div class="main-profile">
+          <div class="card ">
+            <div class="card-content white-text" style="padding:5px;">
+              <!-- <span class="card-title">{{user.first_name}}</span> -->
+              <img ng-src="./images/avatar/{{getUser().avatar_url || 'bit.png'}}" class="md-avatar profile-avatar circle" style="  border-radius: 50%;" alt="{{getUser().first_name}}  {{getUser().last_name }}" />
+
+            </div>
+            <div class="card-action  accent-1" style="margin-top:-85px;padding-top:80px;background-color: inherit;">
+                <md-list>
+                    <md-list-item class="red-text accent-1">
+                         <h1 style="margin:0;line-height:100%;"  class="center-align">{{getUser().first_name }}&nbsp;{{getUser().last_name}} </h1>
+                    </md-list-item>
+                    <md-list-item class="red-text accent-1">
+                        <h4 class="md-headline center-align" style="margin:0;">{{getUser().designation }} at {{getUser().company}}
+                        </h4>
+                    </md-list-item>
+                </md-list>
+                <hr class="style-seven"/>
+
+                <div class="collection" style="margin-top:0;">
+               <a ng-click="scroll('personalInformation');" class="collection-item waves-effect purple-text">Personal Information</a>
+               <a ng-click="scroll('professionalInformation');" class="collection-item waves-effect green-text">Professional Information</a>
+
+             </div>
+
+            </div>
+          </div>
+      </div>
+
+    </div>
+    <div flex>
+    <span ng-include=" './App/views/personalInformation.html' " id="#personal"></span>
+    <span ng-include=" './App/views/professionalInformation.html' " id="#professional"></span>
+
+
+
+    </div>
+  </div>
+
+</span>

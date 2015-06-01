@@ -1,0 +1,82 @@
+<section id="professionalInformation" >
+<div class="card ">
+    <div class="card-content green white-text ">
+        <span class=" card-title ">Professional Information</span>
+    </div>
+    <div class="card-action" ng-show="professionalViewMode">
+        <div class="work">
+            <p ng-hide="viewOnly">
+                <span class="blue-text" style="float:right;cursor:pointer;" ng-click="toggleViewMode('professionalViewMode');"><label class="green-text" style="cursor:pointer;">Edit</label><i class="fa fa-pencil prefix purple-text" style="margin-left:5px;"></i>  </span>
+            </p>
+            <p  style="border-top:0;">
+                <span class="blue-text"> Branch : </span><label class="green-text">{{getUser().branch}}</label>
+            </p>
+            <p >
+                <span class="blue-text">Batch : </span><label class="green-text">{{getUser().entryYear +" - "+getUser().passingYear}}</label>
+            </p>
+
+            <p>
+                <span class="blue-text">Designation : </span><label class="green-text">{{getUser().designation}}</label>
+            </p>
+            <p>
+                <span class="blue-text">Email ID(s) : </span><label class="green-text">{{getUser().emails}}</label>
+            </p>
+            <p>
+                <span class="blue-text">Company : </span><label class="green-text">{{getUser().company}}</label>
+            </p>
+        </div>
+    </div>
+    <md-content class="md-padding" ng-hide="professionalViewMode">
+    <form name="professionalForm" novalidate>
+                <div layout layout-sm="column">
+
+                  <md-input-container class="input-field" flex>
+                    <md-select ng-model="user.branch" md-on-open="loadBranches()" style="min-width: 200px;">
+                      <md-select-label>{{ user.branch ? user.branch : 'Select Branch' }}</md-select-label>
+                      <md-option ng-value="branch" ng-repeat="branch in branches">{{branch}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <md-select ng-model="user.entryYear" md-on-open="loadYears()" style="min-width: 200px;">
+                      <md-select-label>{{ user.entryYear ? user.entryYear : 'Select Entry Year' }}</md-select-label>
+                      <md-option ng-value="year" ng-repeat="year in years">{{year}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <md-select ng-model="user.passingYear" md-on-open="loadYears()" style="min-width: 200px;">
+                      <md-select-label>{{ user.passingYear ? user.passingYear : 'Select Passing Year' }}</md-select-label>
+                      <md-option ng-value="year" ng-repeat="year in years">{{year}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+
+
+                </div>
+
+                <div layout layout-sm="column">
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.designation" id="designation" type="text" class="validate" ng-required="true">
+                    <label for="designation">Designation</label>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.emails" id="emailid" type="email" placeholder="Multiple?(Sepearate by comma)" class="validate" ng-required="true">
+                    <label for="emailid">Email ID</label>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.company" id="company" type="text" class="validate" ng-required="true">
+                    <label for="company">Company</label>
+                  </md-input-container>
+
+                </div>
+                <md-button md-theme="bitsaaTheme" id="updateProfessionalInfo"  class="md-raised md-primary waves-effect waves-light left-align " ng-click="updateInfo(professionalForm,'professionalViewMode');">Save <i class="fa fa-send "></i></md-button>
+    </form>
+              </md-content>
+    
+</div>
+
+</section>

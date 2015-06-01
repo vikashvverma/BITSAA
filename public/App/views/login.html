@@ -1,0 +1,249 @@
+<div ng-controller="userController" id="userSignupLogin" layout="column" class="container md-whiteframe-z4">
+  <md-content class="md-padding">
+    <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+      <md-tab label="Sign Up">
+        <div style="padding: 25px; text-align: center;">
+          <div>
+            <form name="registerForm" novalidate>
+
+              <md-toolbar md-theme="bitsaaTheme">
+                <div class="md-toolbar-tools md-primary ">
+                  <h2>
+                    <span>Basic Information</span>
+                  </h2>
+                </div>
+              </md-toolbar>
+              <div id="thumbnail">
+                <img src="./images/avatar_default.png"  id="avatar_default" ng-hide="profile.avatar" ng-click="selectAvatar();" />
+                <i class="fa fa-long-arrow-left fa-3px" ng-hide="profile.avatar">Select Profile Picture</i>
+                <span id="avatar_thumbnail"  ng-show="profile.avatar" ng-click="selectAvatar();"></span>
+              </div>
+              <md-input-container class="input-field" style="display:none;" flex>
+                <input ng-model="profile.avatar" accept="image/*" id="avatar" type="file" file-upload class="validate">
+              </md-input-container>
+
+              <md-content class="md-padding">
+                <div layout layout-sm="column">
+                  <md-input-container class="input-field" flex>
+                    <i class="mdi-action-account-circle prefix blue-text"></i>
+                    <input ng-model="user.first_name" id="first_name" type="text" class="validate" ng-required="true">
+                    <label for="first_name">First Name</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="mdi-action-account-circle prefix blue-text"></i>
+                    <input ng-model="user.last_name" id="last_name" type="text" class="validate" ng-required="true">
+                    <label for="last_name">Last Name</label>
+                  </md-input-container>
+                </div>
+
+                <div layout layout-sm="column">
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-birthday-cake prefix blue-text"></i>
+                    <input ng-model="user.dob" bit-Calendar calendar-contention=".datepicker" ng-click="clicked();" type="date" id="dob" class=" datepicker" ng-required="true" />
+                    <label for="dob">Date of Birth</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-phone prefix blue-text"></i>
+                    <input ng-model="user.mobiles" type="text" id="mobiles" class="validate" ng-required="true" />
+                    <label for="mobiles">Mobile Nos.</label>
+                  </md-input-container>
+                  <md-radio-group ng-model="user.gender"  style="display:inline-flex;border: 0px dotted transparent; ">
+                    <span style="line-height:500%;">Gender</span>
+                    <md-radio-button value="M" aria-label="Male" class="md-primary"><i class="fa fa-male fa-3x indigo-text"></i></md-radio-button>
+                    <md-radio-button value="F" aria-label="Female"> <i class="fa fa-female fa-3x pink-text"></i> </md-radio-button>
+                  </md-radio-group>
+                </div>
+
+                <md-input-container class="input-field" flex>
+                  <i class="fa fa-map-marker prefix blue-text"></i>
+                  <input ng-model="user.address" id="address" type="text" class="validate" ng-required="true">
+                  <label for="address">Address</label>
+                </md-input-container>
+
+                <div layout layout-sm="column">
+                  <md-input-container class="input-field" flex>
+                    <i class="mdi-social-location-city prefix blue-text"></i>
+                    <input ng-model="user.city" id="city" type="text" class="validate" ng-required="true">
+                    <label for="city">City</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-globe prefix blue-text"></i>
+                    <input ng-model="user.country" id="country" type="text" class="validate" ng-required="true">
+                    <label for="country">Country</label>
+                  </md-input-container>
+                </div>
+
+              </md-content>
+
+
+              <md-toolbar md-theme="bitsaaTheme" class="md-accent">
+                <div class="md-toolbar-tools md-primary ">
+                  <h2>
+                    <span>Professional Information</span>
+                  </h2>
+                </div>
+              </md-toolbar>
+
+              <md-content class="md-padding">
+
+                <div layout layout-sm="column">
+
+                  <md-input-container class="input-field" flex>
+                    <md-select ng-model="user.branch" md-on-open="loadBranches()" style="min-width: 200px;">
+                      <md-select-label>{{ user.branch ? user.branch : 'Select Branch' }}</md-select-label>
+                      <md-option ng-value="branch" ng-repeat="branch in branches">{{branch}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <md-select ng-model="user.entryYear" md-on-open="loadYears()" style="min-width: 200px;">
+                      <md-select-label>{{ user.entryYear ? user.entryYear : 'Select Entry Year' }}</md-select-label>
+                      <md-option ng-value="year" ng-repeat="year in years">{{year}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <md-input-container flex>
+                    <md-select ng-model="user.passingYear" md-on-open="loadYears()" style="min-width: 200px;">
+                      <md-select-label>{{ user.passingYear ? user.passingYear : 'Select Passing Year' }}</md-select-label>
+                      <md-option ng-value="year" ng-repeat="year in years">{{year}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+
+
+                </div>
+
+                <div layout layout-sm="column">
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.designation" id="designation" type="text" class="validate" ng-required="true">
+                    <label for="designation">Designation</label>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.emails" id="emailid" type="email" placeholder="Multiple?(Sepearate by comma)" class="validate" ng-required="true">
+                    <label for="emailid">Email ID</label>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.company" id="company" type="text" class="validate" ng-required="true">
+                    <label for="company">Company</label>
+                  </md-input-container>
+
+                </div>
+
+              </md-content>
+
+              <md-toolbar md-theme="bitsaaTheme" class="md-warn">
+                <div class="md-toolbar-tools md-primary ">
+                  <h2>
+                    <span>Login Information</span>
+                  </h2>
+                </div>
+              </md-toolbar>
+              <md-content class="md-padding">
+
+                <div layout layout-sm="column" layout-md="column">
+
+                  <md-input-container class="input-field" flex>
+
+                    <input ng-model="user.username" id="username" type="text" class="validate" ng-required="true">
+                    <i class="fa fa-spinner fa-pulse md-warn" ng-show="user.username && usernameExists===undefined"></i>
+                    <i class="fa fa-check green-text" ng-show="user.username && usernameExists===false">Available</i>
+                    <i class="fa fa-times red-text" ng-show="user.username && usernameExists===true">Not Available</i>
+                    <label for="username">username</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.primaryEmail" id="primaryEmail" type="email" class="validate" ng-required="true">
+                    <i class="fa fa-spinner fa-pulse md-warn" ng-show="user.primaryEmail && emailExists===undefined"></i>
+                    <i class="fa fa-times red-text" ng-show="user.primaryEmail && emailExists===true">Email already registered!</i>
+                    <label for="primaryEmail">Email ID</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.password" id="password" type="password" class="validate" ng-required="true" ng-minlength="6">
+                    <label for="password">Password</label>
+                  </md-input-container>
+
+                  <md-input-container class="input-field" flex>
+                    <input ng-model="user.cPassword" id="cPassword" type="password" class="validate" ng-required="true" ng-minlength="6">
+                    <label for="cPassword">Confirm Password</label>
+                  </md-input-container>
+
+                </div>
+
+
+
+                <md-button md-theme="bitsaaTheme" class="md-raised md-primary waves-effect waves-light left-align " ng-click="register(registerForm);" ng-disabled="uploading">Join Us <i class="fa fa-send "></i></md-button>
+
+
+              </md-content>
+            </form>
+
+          </div>
+        </div>
+      </md-tab>
+      <md-tab label="Sign In">
+        <div style="padding: 25px; text-align: center;">
+          <div>
+            <form name="loginForm" novalidate>
+              <md-content class="md-padding">
+
+                <div layout layout-sm="column" layout-md="column" ng-show="showLoginForm && !showPasswordReset">
+
+                  <md-input-container class="input-field" flex style="overflow-y: hidden;">
+                    <i class="fa fa-user prefix blue-text"></i>
+                    <input ng-model="usernameEmail" name="usernameEmail" type="text" class="validate" ng-minlength="4" ng-required="true">
+                    <i class="fa fa-check green-text" ng-show="usernameEmail && usernameEmailExists===false">Invalid username or email!</i>
+                    <label for="username">username or email</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-lock prefix blue-text"></i>
+                    <input ng-model="password" name="password" type="password" class="validate" ng-required="true">
+                    <label for="password">Password</label>
+                  </md-input-container>
+                </div>
+                <div layout layout-sm="column" layout-md="column" style="float: right;" ng-show="showLoginForm && !showPasswordReset">
+                  <label style="font-size:14px;color:green;cursor:pointer;" ng-click="toggleLoginForm();">Forgot Password?</label>
+                </div>
+                <div layout layout-sm="column" layout-md="column" ng-hide="showLoginForm">
+                  <div flex>
+                      <md-input-container class="input-field" flex>
+                        <i class="fa fa-lock prefix blue-text"></i>
+                        <input ng-model="resetEmail" name="resetEmail" type="email" class="validate">
+                        <label for="resetEmail">Enter your primary email address</label>
+                      </md-input-container>
+                  </div>
+                </div>
+                <div layout layout-sm="column" layout-md="column" style="float: right;" ng-hide="showLoginForm">
+                  <label style="font-size:14px;color:green;cursor:pointer;" ng-click="toggleLoginForm();">Sign In</label>
+                </div>
+                <div layout layout-sm="column" layout-md="column" ng-show="showPasswordReset">
+
+                  <md-input-container class="input-field" flex style="overflow-y: hidden;">
+                    <i class="fa fa-eye-slash prefix blue-text"></i>
+                    <input ng-model="new_password" name="new_password" type="password" class="validate" ng-minlength="4" >
+                    <label for="new_password">Password</label>
+                  </md-input-container>
+                  <md-input-container class="input-field" flex>
+                    <i class="fa fa-eye-slash prefix blue-text"></i>
+                    <input ng-model="c_new_password" name="c_new_password" type="password" class="validate" >
+                    <label for="c_new_password">Confirm Password</label>
+                  </md-input-container>
+                </div>
+                
+
+
+
+                <md-button md-theme="bitsaaTheme" id="signin" ng-show="showLoginForm && !showPasswordReset" class="md-raised md-primary waves-effect waves-light left-align " ng-click="signin(loginForm);">Log In <i class="fa fa-send "></i></md-button>
+                <md-button md-theme="bitsaaTheme" id="resetPassword" ng-hide="showLoginForm" ng-disabled="showLoader" class="md-raised md-primary waves-effect waves-light left-align " ng-click="sendResetLink(loginForm);">Submit<i class="fa fa-send "></i></md-button>
+                <md-button md-theme="bitsaaTheme" id="showPasswordReset" ng-show="showPasswordReset" ng-disabled="showLoader" class="md-raised md-primary waves-effect waves-light left-align " ng-click="resetPassword(loginForm);">Reset Password<i class="fa fa-send "></i></md-button>
+
+
+              </md-content>
+            </form>
+          </div>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

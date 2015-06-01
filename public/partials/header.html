@@ -1,0 +1,66 @@
+<span ng-controller="profileController">
+<div class="navbar-fixed">
+    <nav id="nav" class="teal darken-2">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a ui-sref="home" class="brand-logo">
+              <img src="./images/favicon.ico" alt="Mako">
+            </a>
+            <ul class="right hide-on-med-and-down" style="color:#FFFFFF !important;">
+              <li>
+                <a ui-sref="home">AAAA</a>
+              </li>
+              <li>
+                <a ui-sref="home">BBBBB</a>
+              </li>
+              <li>
+                <a href="#!" ng-click="toggleRight();"><i class="large mdi-action-account-circle"></i></a>
+              </li>
+            </ul>
+            <ul id="nav-mobile" class="right side-nav">
+                <li>
+                  <a ui-sref="home">AAAA</a>
+                </li>
+                <li>
+                  <a ui-sref="home">BBBBB</a>
+                </li>
+                <li>
+                  <a ng-click="toggleRight();"><i class="large mdi-action-account-circle"></i></a>
+                </li>
+            </ul>
+            <a class="button-collapse" href="javascript:void(0);"  data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
+          </div>
+        </div>
+    </nav>
+</div>
+
+
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" style="z-index: 1000;min-width:25%;">
+      <md-toolbar class="md-theme-light">
+        <div class="profile">
+          <a href=""><i class="md md-close"></i></a>
+        </div>
+        <div class="head">
+          <div class="image"><img src="./images/favicon.ico" alt="alt text" class="img-responsive img"></div>
+          <div class="content">
+  					<p>Benjamin Thomson</p>
+  					<span>Web &amp; UX Designer</span>
+  				</div>
+        </div>
+
+      </md-toolbar>
+      <md-content ng-controller="profileController" class="md-padding">
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-sidenav-focus>
+          </md-input-container>
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
+
+</span>
