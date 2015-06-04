@@ -40,7 +40,7 @@ var app=function(){
 
   self.start=function(){
     self.app.listen(self.port,self.ipaddress,function(){
-      console.log("Node Server Started on %s:%d",self.ipaddress,self.port);
+      console.log("Node Server Started  %s:%d",self.ipaddress,self.port);
     });
   };
 };
